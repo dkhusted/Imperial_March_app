@@ -1,14 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, Text, View, StyleSheet, Button } from 'react-native';
+import Counter from './Counter';
 
-export default function App() {
-  return (
+const App = () => {
+
+  return (  
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Counter />
     </View>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -17,4 +20,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  scrollContainer:{
+
+  },
+  logo: {
+    width: 350,
+    height: 160,
+    marginBottom: 10,
+  },
+  title: {
+    color:'#321',
+    fontSize:18,
+    marginHorizontal:40,
+    padding: 40,
+  },
+  button:{
+    backgroundColor:'blue',
+    padding:20,
+    borderRadius:5,
+    fontSize:20,
+    color: '#fff'
+  },
+  buttonText:{
+    fontSize:20,
+    color:'#fff'
+  }
 });
