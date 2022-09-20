@@ -1,49 +1,51 @@
 import React, { useState , useEffect} from 'react'; //<--- useEffect has HAS HAS TOOOOOOOOOOOOOOO be imported from react. Otherwise we get something..else...
 import { ScrollView, Text, View, StyleSheet, Button, TextInput } from 'react-native';
 
-
-const Counter = () => {
-    const [count, setCounter] = useState(0); //<--- 0 means the state variable is of type int. True would mean boolean
-    const [fonSize, setFontSize] = useState(0);
-    const [usrBGcolour, setusrBGcolour] = useState('');
-      //increase counter
-  const increase = () => {
-    setCounter(count => count + 1);
-  };
+//Parent because MenuScreen class 'acts like a child' -_-
+export class Counter extends React.Component {
+    constructor(props){
+      super(props);
+      this.state ={
+        count: 0,
+        fonSize: 25,
+        usrBGcolour: '#ffdab9'
+      }
+    }
  
   //decrease counter
-  const decrease = () => {
-    setCounter(count => count - 1);
-  };
- 
+  decrease = () => {
+    this.setState({count: this.state.count - 1});
+  }
   //reset counter 
-  const reset = () =>{
-    setCounter(0)
-  };
+  reset = () =>{
+    this.setState({count: 0});
+  }
   
-  useEffect(() => {
-    setFontSize(25);
-    setusrBGcolour('#ffdab9')
-  },[])
+  componentDidUpdate() {
+    if((this.state.count % 3) == 0)
+      this.state.fonSize = this.state.count;
+    else
+      this.state.fonSize = 30;
+  }
+
+  render() {
 
   return (
-      <View style={{backgroundColor:usrBGcolour, flex:2}}>
-        <Text style={{color:"#ffdab9", fontSize: fonSize}}>Lets party!!!</Text>
-        <Button style={styles.button} onPress={increase} title="I increase!"/>
-        <Button style={styles.button} onPress={decrease} title="I decrease!"/>
-        <Button style={styles.button} onPress={reset} title="I reset!"/>
-        <Text style={styles.title}>Count={count}</Text>
-        <Text style={styles.title}>Current fontSize={fonSize}</Text>
-        <TextInput style={{height:40, width:150, borderWidth:1, borderColor:'rgb(255,255,255'}} placeholder="Desired background color" onChangeText={newText => setusrBGcolour(newText)}
-        defaultValue={usrBGcolour}>
-
+      <View style={{backgroundColor: this.state.usrBGcolour, flex:1}}>
+        <Text style={{color:"#ffdab9", fontSize: this.state.fonSize}}>Lets party!!!</Text>
+        <Button style={styles.button} onPress={() => this.setState({count: this.state.count + 1})} title="I increase!"/>
+        <Button style={styles.button} onPress={this.decrease} title="I decrease!"/>
+        <Button style={styles.button} onPress={this.reset} title="I reset!"/>
+        <Text style={styles.title}>Count={this.state.count}</Text>
+        <Text style={styles.title}>Current fontSize={this.state.fonSize}</Text>
+        <TextInput style={{height:40, width:150, borderWidth:1, borderColor:'rgb(255,255,255', backgroundColor:'#fff'}} 
+        placeholder="Desired background color" onChangeText={(newText) => this.setState({usrBGcolour: newText})}
+        defaultValue={this.state.usrBGcolour}>
         </TextInput>
       </View>
     );
   }
-
-  export default Counter;
-
+}
 
 const styles = StyleSheet.create({
     container: {
