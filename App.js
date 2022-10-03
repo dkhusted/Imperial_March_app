@@ -6,6 +6,7 @@ import {Counter} from './Counter.js';
 import {Map} from './Map.js';
 import {MenuScreen} from './Menu.js'
 import {Provider } from 'react-native-paper';
+import {Leveler} from './Leveler';
 
 
 /*
@@ -29,6 +30,7 @@ class AppNavigation extends React.Component{
         <Stack.Screen name="Menu" component={MenuScreen}/>
         <Stack.Screen name="Counter" component={Counter}/>
         <Stack.Screen name="Map" component={Map}/>
+        <Stack.Screen name="Leveler" component={Leveler}/>
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
@@ -39,8 +41,6 @@ class AppNavigation extends React.Component{
 
 export default class App extends React.Component{
   render() {
-  
-
     return (
       <AppNavigation />
     );

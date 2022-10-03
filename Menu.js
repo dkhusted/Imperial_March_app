@@ -26,7 +26,7 @@ export class MenuScreen extends React.Component{
     return (
       <Provider>
         <View style={styles.container}>
-          <Menu
+          <Menu style={{width:400, height:300}}
             visible={this.state.visible}
             onDismiss={this.closeMenu}
             anchor={
@@ -42,6 +42,10 @@ export class MenuScreen extends React.Component{
               onPress={() => this.props.navigation.navigate('Map')}
               title="Map"
             />
+            <Menu.Item
+              onPress={() => this.props.navigation.navigate('Leveler')}
+              title="Leveler"
+            />
           </Menu>
         </View>
       </Provider>
@@ -51,9 +55,7 @@ export class MenuScreen extends React.Component{
   
 const styles = StyleSheet.create({
   container: {
-    padding: 50,
-    flexDirection: 'row',
+    padding: 5,
     justifyContent: 'center',
-    height: 200,
   },
 });
